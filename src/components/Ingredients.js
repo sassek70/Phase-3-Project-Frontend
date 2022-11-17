@@ -11,7 +11,7 @@ const Ingredients = ({baseUrl}) => {
     },[])
 
 
-    const displayIngredients = allIngredients.map((ingredient) => <span key={ingredient.id}>{ingredient.name}</span>)
+    const displayIngredients = allIngredients.map((ingredient) => <div key={ingredient.id}>{ingredient.name}</div>)
 
     return (
         <div>
