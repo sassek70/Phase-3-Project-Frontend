@@ -7,7 +7,6 @@ import Recipes from './Recipes.js';
 function App() {
   return (
     <div>
-      "Hello World!"
       <Header/>
       <Routes>
         <Route path="/" element={"Welcome to CookBook!"}/>
