@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
 
-const Ingredients = () => {
+const Ingredients = ({baseUrl}) => {
     const [allIngredients, setAllIngredients] = useState([])
     
     useEffect(() => {
-        fetch("http://localhost:9292/ingredients") 
+        fetch(`${baseUrl}ingredients`) 
         .then(res => res.json())
         .then((ingredients) => setAllIngredients(ingredients))
     },[])

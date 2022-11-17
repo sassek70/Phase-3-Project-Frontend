@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const Recipes = () => {
+const Recipes = ({baseUrl}) => {
     const [recipeList, setRecipelist] = useState([])
 
     useEffect(() => {

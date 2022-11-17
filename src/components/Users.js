@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
+import UserDetails from "./UserDetails"
 
-const Users = () => {
+const Users = ({baseUrl}) => {
     const [userList, setUserlist] = useState([])
     const [chosenUserId, setChosenUserId] = useState()
+    const [displayUserDetails, setDisplayUserDetails] = useState(false)
 
     useEffect(() => {
         fetch("http://localhost:9292/user") 
@@ -10,14 +12,16 @@ const Users = () => {
         .then((users) => setUserlist(users))
     },[])
     const handleClick = (userId) => {
-        setChosenUserId(userId)
+        setChosenUserId(userId) 
+        retrieveUserData(userId)
     }
     
-    console.log(chosenUserId)
+    const retrieveUserData = (userId) => {
+    }
 
     const displayedUsers = userList.map((user) => {
         const {id, name} = user
-        return (<h2 key={id} onClick={() => handleClick(id)}>{name}</h2>)
+        return (<UserDetails key={id} id={id} name={name} baseUrl={baseUrl} onClick={() => handleClick(id)}/>)
     })
     
 
