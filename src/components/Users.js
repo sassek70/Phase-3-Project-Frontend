@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import UserDetails from "./UserDetails"
+import { Card } from 'semantic-ui-react'
+
 
 const Users = ({baseUrl}) => {
     const [userList, setUserlist] = useState([])
@@ -20,9 +22,9 @@ const Users = ({baseUrl}) => {
     
 
     return(
-        <div>
+        <Card.Group itemsPerRow={4}>
             {displayedUsers}
-        </div>
+        </Card.Group>
     )
 }
 

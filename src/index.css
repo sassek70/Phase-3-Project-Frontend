@@ -1,4 +1,29 @@
-body {
+/* body {
 background-color: grey
+} */
+
+/* .user-container {
+    display: flex;
+    flex-direction: row;
+    column-count: 2;
+    column-gap: 10px;
+    justify-content: center;
 }
 
+.user-cards {
+    display: flex;
+    border: 2px solid black;
+}
+
+.details-buttons {
+    height: 1.5rem;
+}
+
+.details {
+    display: inline-block;
+    padding-left: 20px;
+    text-align: left;
+    max-width: 50%;
+    color: whitesmoke;
+
+} */

@@ -18,8 +18,6 @@ const AddIngredient = ({baseUrl}) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(formData)
-        console.log(`${baseUrl}user/${id}/ingredients`)
   
         fetch(`${baseUrl}user/${id}/ingredients`, {
             method: "POST",
@@ -30,10 +28,7 @@ const AddIngredient = ({baseUrl}) => {
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then((newIngredient) => {
-            console.log(newIngredient)
-            navigate('/Users')
-        })
+        .then(navigate('/Users'))
         
         setFormData({
             name: "",

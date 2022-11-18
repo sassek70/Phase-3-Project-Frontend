@@ -20,8 +20,6 @@ const AddRecipe = ({baseUrl}) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(formData)
-        console.log(`${baseUrl}user/${id}/recipes`)
   
         fetch(`${baseUrl}user/${id}/recipes`, {
             method: "POST",
@@ -32,10 +30,7 @@ const AddRecipe = ({baseUrl}) => {
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then((newRecipe) => {
-            console.log(newRecipe)
-            navigate('/Users')
-        })
+        .then(navigate('/Users'))
         
         setFormData({
             name: "",

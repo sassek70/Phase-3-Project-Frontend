@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { Card, Button} from 'semantic-ui-react'
 import uuid from "react-uuid"
 
 
@@ -44,7 +45,7 @@ const UserDetails = ({id, name, baseUrl}) => {
     }
 
     const handleDeleteIngredient = (ingredient) => {
-        console.log(ingredient)
+
         fetch(`${baseUrl}user/${id}/ingredients/${ingredient.id}`, {
             method: "DELETE",
             headers: {
@@ -57,7 +58,7 @@ const UserDetails = ({id, name, baseUrl}) => {
     }
 
     const handleDeleteRecipe = (recipe) => {
-        console.log(recipe)
+
         fetch(`${baseUrl}user/${id}/recipes/${recipe.id}`, {
             method: "DELETE",
             headers: {
@@ -72,10 +73,19 @@ const UserDetails = ({id, name, baseUrl}) => {
     const displayIngredients = userIngredients.map(({ingredient, quantity}) => {
         return(
             <div key={uuid()}>    
-                <div>
-                    {ingredient.name} quantity: {quantity}
-                    <button onClick={()=>handleDeleteIngredient(ingredient)}>X</button>
-                </div>
+                <Card>
+                  <Card.Content>
+                    <Card.Header>{ingredient.name}</Card.Header>
+                    <Card.Meta>
+                      <span className='date'>Quantity: {quantity}</span>
+                    </Card.Meta>
+                  </Card.Content>
+                  <Card.Content extra>
+                  <Button inverted color='red' onClick={()=>handleDeleteIngredient(ingredient)}>
+                    <Button.Content  visible>Delete</Button.Content>
+                  </Button>
+                  </Card.Content>
+                </Card>
             </div>
             )
         })
@@ -86,8 +96,22 @@ const UserDetails = ({id, name, baseUrl}) => {
     const displayRecipes = userRecipes.map(({recipe, cuisine}) => {
         return (
             <div key={uuid()}>
-                <NavLink to={`/Recipes/${recipe.id}`}>{recipe.name}   {cuisine.name}</NavLink>
-                <button onClick={()=>handleDeleteRecipe(recipe)}>X</button>
+                <Card>
+                  <Card.Content>
+                    <Card.Header>{recipe.name}</Card.Header>
+                    <Card.Meta>
+                      <span className='date'>{cuisine.name}</span>
+                    </Card.Meta>
+                    <Card.Description>
+                      {recipe.instructions}
+                    </Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>
+                  <Button inverted color='red' onClick={()=>handleDeleteRecipe(recipe)}>
+                    <Button.Content visible>Delete</Button.Content>
+                  </Button>
+                  </Card.Content>
+                </Card>
             </div>
                 )
             })
@@ -95,42 +119,62 @@ const UserDetails = ({id, name, baseUrl}) => {
 
     return(
         <>
-        <div onClick={expandDetails}>
-            <h2>{name}</h2>
-            {showDetails ?
-            <>
-            <button onClick={getUserRecipes}>Recipe List</button>
-            <button onClick={getUserIngredients}>Ingredient List</button>
-            </>
-            :
-            <></>
-            }   
-        </div>
-        <div>
-            {showUserPantry ? 
-            <div>
-                <h4>{name}'s ingredients:</h4>
-                {displayIngredients}
-                <NavLink to={`/addIngredient/${id}`} name="New Ingredient">Add Ingredient</NavLink>
-            </div>
-            :
-            <></>
-            }    
-        </div>
-        <div>
-            {showUserCookbook ? 
-            <>
-                <h4>{name}'s recipes:</h4>
-                {displayRecipes}
-                <NavLink to={{pathname: `/addRecipe/${id}`}} state={{id}} name="New Recipe">Add Recipe</NavLink>
-            </>
-            :
-             <></>
-            }    
-        </div>
+                <Card onClick={expandDetails}>
+                    <Card.Content>
+                        <Card.Header>{name}</Card.Header>
+                        {showDetails ? 
+                        <>
+                            <Button onClick={getUserRecipes}>
+                                <Button.Content visible>Recipe List</Button.Content>
+                            </Button>  
+                            <Button onClick={getUserIngredients}>
+                              <Button.Content visible>Ingredients List</Button.Content>
+                            </Button>  
+                        </>
+                        :
+                        <></>
+                    }
+                        <Card.Description>
+                            {showUserPantry ? 
+                                <div>
+                                    <h4>{name}'s ingredients:</h4>
+                                    {displayIngredients}
+                                    <NavLink to={`/addIngredient/${id}`} name="New Ingredient">Add Ingredient</NavLink>
+                                </div>
+                            :
+                            <></>
+                            }
+                            {showUserCookbook ? 
+                            <>
+                                <h4>{name}'s recipes:</h4>
+                                {displayRecipes}
+                                <NavLink to={`/addRecipe/${id}`} name="New Recipe">Add Recipe</NavLink>
+                            </>
+                        :
+                         <></>
+                        }   
+                        </Card.Description>
+                    </Card.Content>
+                </Card>
         </>
     )
 }
+
+
+
+
+{/* <Card style={{ width: '18rem' }}>
+<Card.Body>
+  <Card.Title>{recipe.name}</Card.Title>
+  <Card.Subtitle className="mb-2 text-muted">{cuisine.name}</Card.Subtitle>
+  <Card.Text>
+    Some quick example text to build on the card title and make up the
+    bulk of the card's content.
+  </Card.Text>
+  <Card.Link href="`/Recipes/${recipe.id}`">Card Link</Card.Link>
+  <Card.Link href="#">Another Link</Card.Link>
+</Card.Body>
+</Card> */}
 
 export default UserDetails
 

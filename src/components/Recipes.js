@@ -25,7 +25,6 @@ const Recipes = ({baseUrl}) => {
     })
 
     // const displayRecipes = recipeList.map((recipe) => {
-    //     console.log(recipe)
     //     return (
     //         <div key={recipe.id} onClick={handleClick}>
     //             <h2>{recipe.name}</h2>
