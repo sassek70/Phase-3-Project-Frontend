@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import uuid from "react-uuid"
 
 
 const UserDetails = ({id, name, baseUrl}) => {
@@ -38,10 +39,9 @@ const UserDetails = ({id, name, baseUrl}) => {
 
     }
 
-    const displayIngredients = userIngredients.map((ingredient) => <div key={ingredient.id}>{ingredient.name}</div>)
-    const displayRecipes = userRecipes.map((recipe) => <div key={recipe.id}>{recipe.name} {recipe.cuisine}</div>)
+    const displayIngredients = userIngredients.map(({ingredient, quantity}) => <div key={uuid()}>{ingredient.name} quantity: {quantity}</div>)
+    const displayRecipes = userRecipes.map((recipe) => <div key={uuid()}>{recipe.name} {recipe.cuisine}</div>)
     
-    console.log(userRecipes)
 
     return(
         <>
@@ -61,7 +61,7 @@ const UserDetails = ({id, name, baseUrl}) => {
             <div>
                 <h4>{name}'s ingredients:</h4>
                 {displayIngredients}
-                <NavLink to={`/addIngredient`} name="New Ingredient">Add Ingredient</NavLink>
+                <NavLink to={`/addIngredient/${id}`} name="New Ingredient">Add Ingredient</NavLink>
             </div>
             :
             <></>
@@ -72,7 +72,7 @@ const UserDetails = ({id, name, baseUrl}) => {
             <>
                 <h4>{name}'s recipes:</h4>
                 {displayRecipes}
-                <NavLink to={`/addRecipe`} name="New Recipe">Add Recipe</NavLink>
+                <NavLink to={{pathname: `/addRecipe/`}} state={{id}} name="New Recipe">Add Recipe</NavLink>
             </>
             :
              <></>
