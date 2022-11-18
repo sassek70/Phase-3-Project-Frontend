@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const Recipes = () => {
+const Recipes = ({baseUrl}) => {
     const [recipeList, setRecipelist] = useState([])
 
     useEffect(() => {
@@ -11,7 +11,7 @@ const Recipes = () => {
     
 
 
-    const displayRecipes = recipeList.map((recipe) => <h2>{recipe.name}</h2>)
+    const displayRecipes = recipeList.map((recipe) => <h2 key={recipe.id}>{recipe.name}</h2>)
     
 
     return(
