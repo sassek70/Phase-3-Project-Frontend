@@ -6,6 +6,7 @@ import Recipes from './Recipes.js';
 import AddIngredient from './AddIngredient.js';
 import AddRecipe from './AddRecipe.js';
 import { Container } from 'semantic-ui-react'
+import Welcome from '../Welcome.js';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     <Container textAlign='center'>
       <Header/>
       <Routes>
-        <Route path="/" element={"Welcome to CookBook!"}/>
+        <Route path="/" element={<Welcome/>}/>
         <Route path="/Users" element={<Users baseUrl={baseUrl}/>}/>
         <Route path="/Ingredients" element={<Ingredients baseUrl={baseUrl}/>}/>
         <Route path="/Recipes" element={<Recipes baseUrl={baseUrl}/>}/>

@@ -31,7 +31,9 @@ const AddRecipe = ({baseUrl}) => {
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(navigate('/Users'))
+        .then((response) => {
+            console.log(response)
+            navigate('/Users')})
         
         setFormData({
             name: "",

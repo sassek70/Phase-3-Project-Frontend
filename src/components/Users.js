@@ -18,7 +18,7 @@ const Users = ({baseUrl}) => {
     const displayedUsers = userList.map((user) => {
         const {id, name} = user
         return (
-                <Grid.Column>
+                <Grid.Column key={id}>
                     <UserDetails key={id} id={id} name={name} baseUrl={baseUrl} />
                 </Grid.Column>
         )

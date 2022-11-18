@@ -24,8 +24,8 @@ const Recipes = ({baseUrl}) => {
     const displayRecipes = recipeList.map((recipe) => {
         const {id, name, times_cooked, instructions, cuisine_id} = recipe
         return (
-            <Grid.Column>
-                <RecipeDetails key={id} id={id} name={name} times_cooked={times_cooked} instructions={instructions} cuisine_id={cuisine_id} baseUrl={baseUrl}/>
+            <Grid.Column key={id}>
+                <RecipeDetails id={id} name={name} times_cooked={times_cooked} instructions={instructions} cuisine_id={cuisine_id} baseUrl={baseUrl}/>
             </Grid.Column>
         )
     })
