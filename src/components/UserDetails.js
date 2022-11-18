@@ -52,7 +52,7 @@ const UserDetails = ({id, name, baseUrl}) => {
                 "Accept": "application/json"
             },
         })
-        .then(res => res.json)
+        .then(res => res.json())
         .then(fetchIngredients)
     }
 
