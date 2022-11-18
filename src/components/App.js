@@ -17,6 +17,7 @@ function App() {
         <Route path="/Users" element={<Users baseUrl={baseUrl}/>}/>
         <Route path="/Ingredients" element={<Ingredients baseUrl={baseUrl}/>}/>
         <Route path="/Recipes" element={<Recipes baseUrl={baseUrl}/>}/>
+        <Route path="/Recipes/:id" element={<Recipes baseUrl={baseUrl}/>}/>
         <Route path="/addIngredient/:id" element={<AddIngredient baseUrl={baseUrl}/>}/>
         <Route path="/addRecipe/:id" element={<AddRecipe baseUrl={baseUrl}/>}/>
       </Routes>

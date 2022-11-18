@@ -11,36 +11,86 @@ const UserDetails = ({id, name, baseUrl}) => {
     const [showDetails, setShowDetails] = useState(false)
 
 
-    const getUserRecipes = (e) => {
-        e.stopPropagation()
-        setShowUserCookbook((showUserCookbook) => !showUserCookbook)
-        setShowUserPantry(false)
-
+    const fetchRecipes = () => {
         fetch(`${baseUrl}user/${id}/recipes`)
         .then(res => res.json())
         .then((userRecipesList) => setUserRecipes(userRecipesList))
     }
+
+    const fetchIngredients = () => {
+        fetch(`${baseUrl}user/${id}/ingredients`)
+        .then(res => res.json())
+        .then((userIngredientsList) => setUserIngredients(userIngredientsList))
+    }
+    const getUserRecipes = (e) => {
+        e.stopPropagation()
+        setShowUserCookbook((showUserCookbook) => !showUserCookbook)
+        setShowUserPantry(false)
+        fetchRecipes()
+        }
 
     
     const getUserIngredients = (e) => {
         e.stopPropagation()
         setShowUserPantry((showUserPantry) => !showUserPantry)
         setShowUserCookbook(false)
-
-        fetch(`${baseUrl}user/${id}/ingredients`)
-        .then(res => res.json())
-        .then((userIngredientsList) => setUserIngredients(userIngredientsList))
+        fetchIngredients()
     }
 
     const expandDetails = () => {
         setShowDetails((showDetails) => !showDetails)
         setShowUserPantry(false)
         setShowUserCookbook(false)
-
     }
 
-    const displayIngredients = userIngredients.map(({ingredient, quantity}) => <div key={uuid()}>{ingredient.name} quantity: {quantity}</div>)
-    const displayRecipes = userRecipes.map((recipe) => <div key={uuid()}>{recipe.name} {recipe.cuisine}</div>)
+    const handleDeleteIngredient = (ingredient) => {
+        console.log(ingredient)
+        fetch(`${baseUrl}user/${id}/ingredients/${ingredient.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        })
+        .then(res => res.json)
+        .then(fetchIngredients)
+    }
+
+    const handleDeleteRecipe = (recipe) => {
+        console.log(recipe)
+        fetch(`${baseUrl}user/${id}/recipes/${recipe.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        })
+        .then(res => res.json)
+        .then(fetchRecipes)
+    }
+
+    const displayIngredients = userIngredients.map(({ingredient, quantity}) => {
+        return(
+            <div key={uuid()}>    
+                <div>
+                    {ingredient.name} quantity: {quantity}
+                    <button onClick={()=>handleDeleteIngredient(ingredient)}>X</button>
+                </div>
+            </div>
+            )
+        })
+            
+
+    
+    
+    const displayRecipes = userRecipes.map(({recipe, cuisine}) => {
+        return (
+            <div key={uuid()}>
+                <NavLink to={`/Recipes/${recipe.id}`}>{recipe.name}   {cuisine.name}</NavLink>
+                <button onClick={()=>handleDeleteRecipe(recipe)}>X</button>
+            </div>
+                )
+            })
     
 
     return(
