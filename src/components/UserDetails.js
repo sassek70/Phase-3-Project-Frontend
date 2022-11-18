@@ -72,7 +72,7 @@ const UserDetails = ({id, name, baseUrl}) => {
             <>
                 <h4>{name}'s recipes:</h4>
                 {displayRecipes}
-                <NavLink to={{pathname: `/addRecipe/`}} state={{id}} name="New Recipe">Add Recipe</NavLink>
+                <NavLink to={{pathname: `/addRecipe/${id}`}} state={{id}} name="New Recipe">Add Recipe</NavLink>
             </>
             :
              <></>
