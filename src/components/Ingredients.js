@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { Card, Grid } from 'semantic-ui-react'
+import uuid from "react-uuid"
 
 
 const Ingredients = ({baseUrl}) => {
@@ -11,12 +13,28 @@ const Ingredients = ({baseUrl}) => {
     },[])
 
 
-    const displayIngredients = allIngredients.map((ingredient) => <div key={ingredient.id}>{ingredient.name}</div>)
+    const displayIngredients = allIngredients.map((ingredient) => {
+    return (
+        <div key={uuid()}>
+            <Grid.Column>
+                <Card>
+                  <Card.Content>
+                    <Card.Header>{ingredient.name}</Card.Header>
+                  </Card.Content>
+                </Card>
+            </Grid.Column>    
+        </div>
+        )
+    })
 
     return (
-        <div>
-            {displayIngredients}
-        </div>
+        <Card.Group>
+            <div style={{paddingTop: "50px"}}>
+                <Grid relaxed columns={3} padded="horizontally">
+                    {displayIngredients}
+                </Grid>
+            </div>
+        </Card.Group>
     )
 }
 

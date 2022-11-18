@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import uuid from "react-uuid"
 import RecipeDetails from "./RecipeDetails"
+import { Card, Grid } from 'semantic-ui-react'
+
 
 const Recipes = ({baseUrl}) => {
     const [recipeList, setRecipelist] = useState([])
@@ -21,11 +23,14 @@ const Recipes = ({baseUrl}) => {
 
     const displayRecipes = recipeList.map((recipe) => {
         const {id, name, times_cooked, instructions, cuisine_id} = recipe
-        return (<RecipeDetails key={id} id={id} name={name} times_cooked={times_cooked} instructions={instructions} cuisine_id={cuisine_id} baseUrl={baseUrl}/>)
+        return (
+            <Grid.Column key={id}>
+                <RecipeDetails id={id} name={name} times_cooked={times_cooked} instructions={instructions} cuisine_id={cuisine_id} baseUrl={baseUrl}/>
+            </Grid.Column>
+        )
     })
 
     // const displayRecipes = recipeList.map((recipe) => {
-    //     console.log(recipe)
     //     return (
     //         <div key={recipe.id} onClick={handleClick}>
     //             <h2>{recipe.name}</h2>
@@ -40,9 +45,13 @@ const Recipes = ({baseUrl}) => {
     
 
     return(
-        <div>
-            {displayRecipes}
+        <Card.Group>
+        <div style={{paddingTop: "50px"}}>
+            <Grid relaxed columns={3} padded="horizontally">
+                {displayRecipes}
+            </Grid>
         </div>
+        </Card.Group>
     )
 }
 

@@ -5,15 +5,17 @@ import Ingredients from './Ingredients.js';
 import Recipes from './Recipes.js';
 import AddIngredient from './AddIngredient.js';
 import AddRecipe from './AddRecipe.js';
+import { Container } from 'semantic-ui-react'
+import Welcome from '../Welcome.js';
 
 function App() {
 
   const baseUrl = "http://localhost:9292/"
   return (
-    <div>
+    <Container textAlign='center'>
       <Header/>
       <Routes>
-        <Route path="/" element={"Welcome to CookBook!"}/>
+        <Route path="/" element={<Welcome/>}/>
         <Route path="/Users" element={<Users baseUrl={baseUrl}/>}/>
         <Route path="/Ingredients" element={<Ingredients baseUrl={baseUrl}/>}/>
         <Route path="/Recipes" element={<Recipes baseUrl={baseUrl}/>}/>
@@ -21,7 +23,7 @@ function App() {
         <Route path="/addIngredient/:id" element={<AddIngredient baseUrl={baseUrl}/>}/>
         <Route path="/addRecipe/:id" element={<AddRecipe baseUrl={baseUrl}/>}/>
       </Routes>
-    </div>
+    </Container>
   );
 }
 

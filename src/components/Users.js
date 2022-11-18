@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import UserDetails from "./UserDetails"
+import { Card, Grid } from 'semantic-ui-react'
+
 
 const Users = ({baseUrl}) => {
     const [userList, setUserlist] = useState([])
@@ -15,14 +17,22 @@ const Users = ({baseUrl}) => {
 
     const displayedUsers = userList.map((user) => {
         const {id, name} = user
-        return (<UserDetails key={id} id={id} name={name} baseUrl={baseUrl} />)
+        return (
+                <Grid.Column key={id}>
+                    <UserDetails key={id} id={id} name={name} baseUrl={baseUrl} />
+                </Grid.Column>
+        )
     })
     
 
     return(
-        <div>
-            {displayedUsers}
+        <Card.Group>
+        <div style={{paddingTop: "50px"}}>
+            <Grid relaxed columns={3} padded="horizontally">
+                {displayedUsers}
+            </Grid>
         </div>
+        </Card.Group>
     )
 }
 

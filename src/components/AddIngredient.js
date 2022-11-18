@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
+
 
 
 const AddIngredient = ({baseUrl}) => {
@@ -18,8 +20,6 @@ const AddIngredient = ({baseUrl}) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(formData)
-        console.log(`${baseUrl}user/${id}/ingredients`)
   
         fetch(`${baseUrl}user/${id}/ingredients`, {
             method: "POST",
@@ -30,10 +30,9 @@ const AddIngredient = ({baseUrl}) => {
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then((newIngredient) => {
-            console.log(newIngredient)
-            navigate('/Users')
-        })
+        .then((response) => {
+            console.log(response)
+            navigate('/Users')})
         
         setFormData({
             name: "",
@@ -43,16 +42,17 @@ const AddIngredient = ({baseUrl}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+            <Form.Field>
             <label>Ingredient:</label>
             <input type="text" value={formData.name} name="name" placeholder="Ingredient Name" onChange={handleChange}></input>
-            
+            </Form.Field>
+            <Form.Field>
             <label>Quantity:</label>
             <input type="number" value={formData.quantity} name="quantity" placeholder="Quantity" onChange={handleChange}></input>
-            
-            <button type="submit">Add Ingredient</button>
-
-        </form>
+            </Form.Field>
+            <Button inverted color='green' type='submit'>Add Ingredient</Button>
+        </Form>
     )
 }
 

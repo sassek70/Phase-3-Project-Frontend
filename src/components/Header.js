@@ -1,15 +1,16 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import { Menu } from 'semantic-ui-react'
 
 const Header =  () => {
 
 
     return (
-        <nav>
-            <NavLink name="Users" to="/Users">Users</NavLink>
-            <NavLink name="All Ingredients" to="/Ingredients">All Ingredients</NavLink>
-            <NavLink name="All Recipes" to="/Recipes">All Recipes</NavLink>
-        </nav>
+        <Menu compact>
+            <Menu.Item as={NavLink} to="/Users">Users</Menu.Item>
+            <Menu.Item as={NavLink} to="/Ingredients">All Ingredients</Menu.Item>
+            <Menu.Item as={NavLink} to="/Recipes">All Recipes</Menu.Item>
+        </Menu>
     )
 }
 

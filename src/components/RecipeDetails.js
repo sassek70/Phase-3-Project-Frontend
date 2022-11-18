@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Card, Button} from 'semantic-ui-react'
 
 const RecipeDetails = ({id, name, times_cooked, instructions, cuisine_id, baseUrl}) => {
     const [showDetails, setShowDetails] = useState(false)
@@ -29,17 +30,49 @@ const RecipeDetails = ({id, name, times_cooked, instructions, cuisine_id, baseUr
 
     return (
         <div onClick={expandDetails}>
-            <h2>{name}</h2>
-            {showDetails ?
-            <div>
-                <h4>This recipe has been cooked {timesCooked} times</h4>
-                <p>Cooking instructions: <em>{instructions}</em></p>
-                <button onClick={handleClick}>Cook Recipe</button>
-            </div>  
+            <Card>
+                <Card.Header>
+                    {name}
+                </Card.Header>
+                {showDetails ?
+                    <>
+                    <Card.Content>
+                        <Card.Meta>
+                            <span className='date'>This recipe has been cooked {timesCooked} tims</span>
+                        </Card.Meta>
+                        <Card.Description>
+                                Cooking instructions: {instructions}
+                        </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                            <Button inverted color='green' onClick={handleClick}>
+                                <Button.Content visible>Cook Recipe</Button.Content>
+                            </Button>
+                    </Card.Content>
+                  </>
             :
             <></>
         }
-        </div>
+        </Card>
+    </div>
+
+
+
+
+
+
+
+        //     <h2>{name}</h2>
+        //     {showDetails ?
+        //     <div>
+        //         <h4>This recipe has been cooked {timesCooked} times</h4>
+        //         <p>Cooking instructions: <em>{instructions}</em></p>
+        //         <button onClick={handleClick}>Cook Recipe</button>
+        //     </div>  
+        //     :
+        //     <></>
+        // }
+        // </div>
     )
 }
 
