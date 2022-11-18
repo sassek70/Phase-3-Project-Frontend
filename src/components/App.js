@@ -6,7 +6,7 @@ import Recipes from './Recipes.js';
 import AddIngredient from './AddIngredient.js';
 import AddRecipe from './AddRecipe.js';
 import { Container } from 'semantic-ui-react'
-import Welcome from '../Welcome.js';
+import Welcome from './Welcome.js';
 
 function App() {
 
