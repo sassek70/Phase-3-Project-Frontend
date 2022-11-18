@@ -136,11 +136,13 @@ const UserDetails = ({id, name, baseUrl}) => {
                     }
                         <Card.Description>
                             {showUserPantry ? 
-                                <div>
-                                    <h4>{name}'s ingredients:</h4>
-                                    {displayIngredients}
-                                    <NavLink to={`/addIngredient/${id}`} name="New Ingredient">Add Ingredient</NavLink>
-                                </div>
+                            <>
+                                <h4>{name}'s ingredients:</h4>
+                                    <div>
+                                        {displayIngredients}
+                                        <NavLink to={`/addIngredient/${id}`} name="New Ingredient">Add Ingredient</NavLink>
+                                    </div>
+                            </>
                             :
                             <></>
                             }

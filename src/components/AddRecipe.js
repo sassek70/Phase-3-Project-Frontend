@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
 
 
 const AddRecipe = ({baseUrl}) => {
@@ -42,20 +43,28 @@ const AddRecipe = ({baseUrl}) => {
         }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Recipe Name:</label>
-            <input type="text" value={formData.name} name="name" placeholder="Recipe Name" onChange={handleChange}></input>
-            
-            <label>Cuisine:</label>
-            <input type="text" value={formData.quantity} name="cuisine" placeholder="Cuisine" onChange={handleChange}></input>
 
-            <label>Instructions:</label>
-            <input type="textbox" value={formData.instructions} name="instructions" placeholder="Instructions" onChange={handleChange}></input>
-            
-            <button type="submit">Add Recipe</button>
+        <Form onSubmit={handleSubmit}>
+            <Form.Field>
+                <label>Recipe Name:</label>
+                <input type="text" value={formData.name} name="name" placeholder="Recipe Name" onChange={handleChange}></input>
+            </Form.Field>
+            <Form.Field> 
+                <label>Cuisine:</label>
+                <input type="text" value={formData.quantity} name="cuisine" placeholder="Cuisine" onChange={handleChange}></input>
+            </Form.Field>
+            <Form.Field>
+                <label>Instructions:</label>
+                <input type="text" value={formData.instructions} name="instructions" placeholder="Instructions" onChange={handleChange}></input>
+            </Form.Field>
+            <Button inverted color='green' type='submit'>Add Recipe</Button>
 
-        </form>
+        </Form>
     )
 }
     
+
+
+
+
 export default AddRecipe

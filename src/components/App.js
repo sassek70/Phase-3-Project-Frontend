@@ -11,7 +11,7 @@ function App() {
 
   const baseUrl = "http://localhost:9292/"
   return (
-    <Container>
+    <Container textAlign='center'>
       <Header/>
       <Routes>
         <Route path="/" element={"Welcome to CookBook!"}/>

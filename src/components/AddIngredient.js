@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { Button, Form } from 'semantic-ui-react'
+
 
 
 const AddIngredient = ({baseUrl}) => {
@@ -38,16 +40,17 @@ const AddIngredient = ({baseUrl}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+            <Form.Field>
             <label>Ingredient:</label>
             <input type="text" value={formData.name} name="name" placeholder="Ingredient Name" onChange={handleChange}></input>
-            
+            </Form.Field>
+            <Form.Field>
             <label>Quantity:</label>
             <input type="number" value={formData.quantity} name="quantity" placeholder="Quantity" onChange={handleChange}></input>
-            
-            <button type="submit">Add Ingredient</button>
-
-        </form>
+            </Form.Field>
+            <Button inverted color='green' type='submit'>Add Ingredient</Button>
+        </Form>
     )
 }
 

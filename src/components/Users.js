@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import UserDetails from "./UserDetails"
-import { Card } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
 
 
 const Users = ({baseUrl}) => {
@@ -17,13 +17,21 @@ const Users = ({baseUrl}) => {
 
     const displayedUsers = userList.map((user) => {
         const {id, name} = user
-        return (<UserDetails key={id} id={id} name={name} baseUrl={baseUrl} />)
+        return (
+                <Grid.Column>
+                    <UserDetails key={id} id={id} name={name} baseUrl={baseUrl} />
+                </Grid.Column>
+        )
     })
     
 
     return(
-        <Card.Group itemsPerRow={4}>
-            {displayedUsers}
+        <Card.Group>
+        <div style={{paddingTop: "50px"}}>
+            <Grid relaxed columns={3} padded="horizontally">
+                {displayedUsers}
+            </Grid>
+        </div>
         </Card.Group>
     )
 }
