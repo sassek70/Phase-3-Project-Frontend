@@ -38,7 +38,7 @@ const RecipeDetails = ({id, name, times_cooked, instructions, cuisine_id, baseUr
                     <>
                     <Card.Content>
                         <Card.Meta>
-                            <span className='date'>This recipe has been cooked {timesCooked} tims</span>
+                            <span className='date'>This recipe has been cooked {timesCooked} times</span>
                         </Card.Meta>
                         <Card.Description>
                                 Cooking instructions: {instructions}
